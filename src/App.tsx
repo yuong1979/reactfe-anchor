@@ -126,11 +126,8 @@ const Content: FC = () => {
             //interact with the program via rpc
             await program.rpc.increment({
                 accounts: {
-                    myAccount: baseAccount.publicKey,
-                    user: provider.wallet.publicKey,
-                    systemProgram: web3.SystemProgram.programId,
-                },
-                signers: [baseAccount]
+                    myAccount: baseAccount.publicKey
+                }
             });
             const account = await program.account.myAccount.fetch(baseAccount.publicKey);
             console.log('account', account.data.toString());
@@ -154,14 +151,11 @@ const Content: FC = () => {
             //interact with the program via rpc
             await program.rpc.decrement({
                 accounts: {
-                    myAccount: baseAccount.publicKey,
-                    user: provider.wallet.publicKey,
-                    systemProgram: web3.SystemProgram.programId,
-                },
-                signers: [baseAccount]
+                    myAccount: baseAccount.publicKey
+                }
             });
             const account = await program.account.myAccount.fetch(baseAccount.publicKey);
-            console.log('account', account.toString());
+            console.log('account', account.data.toString());
         } catch (err) {
             console.log("transaction error", err);
         }
@@ -187,7 +181,7 @@ const Content: FC = () => {
                 },
             });
             const account = await program.account.myAccount.fetch(baseAccount.publicKey);
-            console.log('account', account.toString());
+            console.log('account', account.data.toString());
         } catch (err) {
             console.log("transaction error", err);
         }
